@@ -9,14 +9,27 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+metal = [
+    "mlx>=0.20.0; sys_platform == 'darwin' and platform_machine == 'arm64'",
+]
+
+[dependency-groups]
 dev = [
     "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
     "ruff>=0.4.0",
 ]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+addopts = ["--cov=cdf", "--cov-report=term-missing"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+]
 
 [tool.ruff]
 line-length = 88

@@ -50,7 +50,7 @@ jobs:
         run: uv python install ${{ matrix.python-version }}
 
       - name: Install dependencies
-        run: uv sync --all-extras --python ${{ matrix.python-version }}
+        run: uv sync --all-groups --all-extras --python ${{ matrix.python-version }}
 
       - name: Run Pytest
         run: uv run --python ${{ matrix.python-version }} pytest
